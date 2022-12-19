@@ -5,15 +5,21 @@
         static void Main(string[] args)
         {
             Console.WriteLine("\t\tWelcome To Employee Wage Computation Problem\n");
+            const int Absent = 0;           //Constants
+            const int Is_Full_Time = 1;
+            const int Is_Part_Time = 2;
             const int Emp_Rate_PerHr = 20;
-            int empHrs = 0;
-            int empWages = 0;
-            int totalEmpWages = 0;
+            int empHrs = 0;                  //Variables
+            //int empWages = 0;
+            int totalEmpWage = 0;
             int Num_Of_Working_Days = 20;
+            int Maximum_Hrs = 100;
+            int totalEmp_Hrs = 0;
+            int totalWorkingDays = 0;
 
-            //Uc5 Calculating monthly employee wages
-            for (int i = 0; i < Num_Of_Working_Days; i++)
+            while(totalEmp_Hrs <= Maximum_Hrs && totalWorkingDays < Num_Of_Working_Days)
             {
+                totalWorkingDays++;
                 Random random = new Random();
                 int Input = random.Next(0, 3);
                 switch (Input)
@@ -33,12 +39,13 @@
                         Console.WriteLine("Employee is Absent");
                         break;
                 }
-                empWages = empHrs * Emp_Rate_PerHr;
-                totalEmpWages += empWages;
-                Console.WriteLine("Daily Employee Wages are :{0}\n", empWages);
+                totalEmp_Hrs = totalEmp_Hrs + empHrs;
+                Console.WriteLine("Day : {0}", totalWorkingDays + " emp hour : " + empHrs);
             }
-            Console.WriteLine("--------------------------------------------------");
-            Console.WriteLine("\t\tMonthly Wages of Employee Are : {0}", totalEmpWages);
+            Console.WriteLine("\n\t\tTotal Employee hours is : {0}", totalEmp_Hrs);
+
+            totalEmpWage = totalEmp_Hrs * Emp_Rate_PerHr;
+            Console.WriteLine("\t\tTotal employee wage : {0}", totalEmpWage);
             Console.ReadLine();
         }
     }
