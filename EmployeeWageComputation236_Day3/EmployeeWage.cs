@@ -5,33 +5,40 @@
         static void Main(string[] args)
         {
             Console.WriteLine("\t\tWelcome To Employee Wage Computation Problem\n");
-            int Emp_Rate_PerHr = 20;
+            const int Emp_Rate_PerHr = 20;
             int empHrs = 0;
             int empWages = 0;
+            int totalEmpWages = 0;
+            int Num_Of_Working_Days = 20;
 
-            //UC4 Calculating Employee Wage Based On Time using Swtich case
-            Random random = new Random();
-            int Input = random.Next(0, 3);
-
-            switch (Input)
+            //Uc5 Calculating monthly employee wages
+            for (int i = 0; i < Num_Of_Working_Days; i++)
             {
-                case 1:
-                    empHrs = 8;
-                    Console.WriteLine("\nEmployee is Present and He his Full Time");
-                    break;
+                Random random = new Random();
+                int Input = random.Next(0, 3);
+                switch (Input)
+                {
+                    case 1:
+                        empHrs = 8;
+                        Console.WriteLine("Employee is Present and is Full Time");
+                        break;
 
-                case 2:
-                    empHrs = 4;
-                    Console.WriteLine("\nEmployee is Present and He his Part Time");
-                    break;
-                
-                default:
-                    empHrs = 0;
-                    Console.WriteLine("Employee is Absent");
-                    break;
+                    case 2:
+                        empHrs = 4;
+                        Console.WriteLine("Employee is Present and is Part Time");
+                        break;
+
+                    default:
+                        empHrs = 0;
+                        Console.WriteLine("Employee is Absent");
+                        break;
+                }
+                empWages = empHrs * Emp_Rate_PerHr;
+                totalEmpWages += empWages;
+                Console.WriteLine("Daily Employee Wages are :{0}\n", empWages);
             }
-            empWages = empHrs * Emp_Rate_PerHr;
-            Console.WriteLine("Employee Wages are : " + empWages);
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("\t\tMonthly Wages of Employee Are : {0}", totalEmpWages);
             Console.ReadLine();
         }
     }
