@@ -2,13 +2,15 @@
 {
     class EmployeeWage
     {
-        static void Main(string[] args)
+        public const int Absent = 0;           //Constants
+        public const int Is_Full_Time = 1;
+        public const int Is_Part_Time = 2;
+        public const int Emp_Rate_PerHr = 20;
+        public static int ComputeEmpWage()
         {
+            //Refactor the code to write a class method
             Console.WriteLine("\t\tWelcome To Employee Wage Computation Problem\n");
-            const int Absent = 0;           //Constants
-            const int Is_Full_Time = 1;
-            const int Is_Part_Time = 2;
-            const int Emp_Rate_PerHr = 20;
+         
             int empHrs = 0;                  //Variables
             //int empWages = 0;
             int totalEmpWage = 0;
@@ -24,12 +26,12 @@
                 int Input = random.Next(0, 3);
                 switch (Input)
                 {
-                    case 1:
+                    case Is_Full_Time:
                         empHrs = 8;
                         Console.WriteLine("Employee is Present and is Full Time");
                         break;
 
-                    case 2:
+                    case Is_Part_Time:
                         empHrs = 4;
                         Console.WriteLine("Employee is Present and is Part Time");
                         break;
@@ -46,6 +48,11 @@
 
             totalEmpWage = totalEmp_Hrs * Emp_Rate_PerHr;
             Console.WriteLine("\t\tTotal employee wage : {0}", totalEmpWage);
+             return totalEmpWage;
+        }
+        static void Main(string[] args)
+        {
+            ComputeEmpWage();
             Console.ReadLine();
         }
     }
