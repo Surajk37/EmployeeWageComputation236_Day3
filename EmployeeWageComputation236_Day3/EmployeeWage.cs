@@ -5,54 +5,48 @@
         public const int Absent = 0;           //Constants
         public const int Is_Full_Time = 1;
         public const int Is_Part_Time = 2;
-        public const int Emp_Rate_PerHr = 20;
-        public static int ComputeEmpWage()
+        public static void ComputeEmpWage(string company, int emp_Wage_Per_Hr, int working_Days_Per_Month, int max_Hrs_Per_Month)
         {
-            //Refactor the code to write a class method
+            //Compute Employee Wage for multiple compaines.
             Console.WriteLine("\t\tWelcome To Employee Wage Computation Problem\n");
          
             int empHrs = 0;                  //Variables
-            //int empWages = 0;
-            int totalEmpWage = 0;
-            int Num_Of_Working_Days = 20;
-            int Maximum_Hrs = 100;
-            int totalEmp_Hrs = 0;
-            int totalWorkingDays = 0;
+            int total_Emp_Wage = 0;
+            int totalWorkingDays = 1;
+            int total_Emp_Hrs = 0;
+            int daily_Emp_Wage = 0;
 
-            while(totalEmp_Hrs <= Maximum_Hrs && totalWorkingDays < Num_Of_Working_Days)
+            Random random = new Random();
+            while (totalWorkingDays <= working_Days_Per_Month && total_Emp_Hrs <= max_Hrs_Per_Month)
             {
-                totalWorkingDays++;
-                Random random = new Random();
-                int Input = random.Next(0, 3);
-                switch (Input)
+                int randomInput = random.Next(0, 3);
+                switch (randomInput)
                 {
                     case Is_Full_Time:
                         empHrs = 8;
-                        Console.WriteLine("Employee is Present and is Full Time");
                         break;
-
                     case Is_Part_Time:
                         empHrs = 4;
-                        Console.WriteLine("Employee is Present and is Part Time");
                         break;
-
                     default:
                         empHrs = 0;
-                        Console.WriteLine("Employee is Absent");
                         break;
                 }
-                totalEmp_Hrs = totalEmp_Hrs + empHrs;
-                Console.WriteLine("Day : {0}", totalWorkingDays + " emp hour : " + empHrs);
+                daily_Emp_Wage = empHrs * emp_Wage_Per_Hr;
+                Console.WriteLine("Employee wage for day {0} is: {1} for {2} Hrs", totalWorkingDays, daily_Emp_Wage, empHrs);
+                total_Emp_Wage += daily_Emp_Wage;
+                total_Emp_Hrs += empHrs;
+                totalWorkingDays++;
             }
-            Console.WriteLine("\n\t\tTotal Employee hours is : {0}", totalEmp_Hrs);
-
-            totalEmpWage = totalEmp_Hrs * Emp_Rate_PerHr;
-            Console.WriteLine("\t\tTotal employee wage : {0}", totalEmpWage);
-             return totalEmpWage;
+            Console.WriteLine("Total Days: {0}, Total working hours: {1}", (totalWorkingDays - 1), total_Emp_Hrs);
+            Console.WriteLine("Total Employee Wage is: " + total_Emp_Wage + "\n");
         }
+
         static void Main(string[] args)
         {
-            ComputeEmpWage();
+            EmployeeWage.ComputeEmpWage("Google", 20, 2, 10);
+            EmployeeWage.ComputeEmpWage("Microsoft", 10, 4, 20);
+            EmployeeWage.ComputeEmpWage("Deloitte", 15, 3, 15);
             Console.ReadLine();
         }
     }
