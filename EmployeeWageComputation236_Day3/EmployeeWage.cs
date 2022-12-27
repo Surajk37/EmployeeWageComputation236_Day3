@@ -8,8 +8,7 @@
         public static void ComputeEmpWage(string company, int emp_Wage_Per_Hr, int working_Days_Per_Month, int max_Hrs_Per_Month)
         {
             //Compute Employee Wage for multiple compaines.
-            Console.WriteLine("\t\tWelcome To Employee Wage Computation Problem\n");
-         
+ 
             int empHrs = 0;                  //Variables
             int total_Emp_Wage = 0;
             int totalWorkingDays = 1;
@@ -44,6 +43,7 @@
 
         static void Main(string[] args)
         {
+            Console.WriteLine("\t\tWelcome To Employee Wage Computation Problem\n");
             EmployeeWage.ComputeEmpWage("Google", 20, 2, 10);
             EmployeeWage.ComputeEmpWage("Microsoft", 10, 4, 20);
             EmployeeWage.ComputeEmpWage("Deloitte", 15, 3, 15);
