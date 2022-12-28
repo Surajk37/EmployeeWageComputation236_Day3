@@ -1,52 +1,61 @@
 ﻿namespace EmployeeWageComputation236_Day3
 {
-    class EmployeeWage
+    public class EmpWageBuilder
     {
-        public const int Absent = 0;           //Constants
-        public const int Is_Full_Time = 1;
-        public const int Is_Part_Time = 2;
-        public static void ComputeEmpWage(string company, int emp_Wage_Per_Hr, int working_Days_Per_Month, int max_Hrs_Per_Month)
+        String company;
+        int emprateperhr;
+        int noofworkingdays;
+        int maxhrinmonth;
+        public EmpWageBuilder(String company, int emprateperhr, int noofworkingdays, int maxhrinmonth)
         {
-            //Compute Employee Wage for multiple compaines.
- 
-            int empHrs = 0;                  //Variables
-            int total_Emp_Wage = 0;
-            int totalWorkingDays = 1;
-            int total_Emp_Hrs = 0;
-            int daily_Emp_Wage = 0;
+            this.company = company;
+            this.emprateperhr = emprateperhr;
+            this.noofworkingdays = noofworkingdays;
+            this.maxhrinmonth = maxhrinmonth;
+        }
 
-            Random random = new Random();
-            while (totalWorkingDays <= working_Days_Per_Month && total_Emp_Hrs <= max_Hrs_Per_Month)
+        public void ComputeEmpwage()
+        {
+            const int isft = 1;
+            const int ispt = 0;
+            int totalwage = 0;
+            int emphr = 0;
+            int totalemphr = 0;
+            int workingdays = 0;
+
+            while (totalemphr <= maxhrinmonth && workingdays < noofworkingdays)
             {
-                int randomInput = random.Next(0, 3);
-                switch (randomInput)
+                workingdays++;
+                Random ran = new Random();
+                int empcheck = ran.Next(0, 3);
+                switch (empcheck)
                 {
-                    case Is_Full_Time:
-                        empHrs = 8;
+                    case isft:
+                        emphr = 8;
                         break;
-                    case Is_Part_Time:
-                        empHrs = 4;
+                    case ispt:
+                        emphr = 4;
                         break;
                     default:
-                        empHrs = 0;
+                        emphr = 0;
                         break;
                 }
-                daily_Emp_Wage = empHrs * emp_Wage_Per_Hr;
-                Console.WriteLine("Employee wage for day {0} is: {1} for {2} Hrs", totalWorkingDays, daily_Emp_Wage, empHrs);
-                total_Emp_Wage += daily_Emp_Wage;
-                total_Emp_Hrs += empHrs;
-                totalWorkingDays++;
+                totalemphr += emphr;
+                Console.WriteLine("Days:" + workingdays + "  Emp Hours:" + totalemphr);
             }
-            Console.WriteLine("Total Days: {0}, Total working hours: {1}", (totalWorkingDays - 1), total_Emp_Hrs);
-            Console.WriteLine("Total Employee Wage is: " + total_Emp_Wage + "\n");
+            totalwage = totalemphr * emprateperhr;
+            Console.WriteLine("Total Wage For Company:" + company + " is " + totalwage);
         }
+
 
         static void Main(string[] args)
         {
             Console.WriteLine("\t\tWelcome To Employee Wage Computation Problem\n");
-            EmployeeWage.ComputeEmpWage("Google", 20, 2, 10);
-            EmployeeWage.ComputeEmpWage("Microsoft", 10, 4, 20);
-            EmployeeWage.ComputeEmpWage("Deloitte", 15, 3, 15);
+            EmpWageBuilder ob1 = new EmpWageBuilder("Wipro", 230, 26, 208);
+            ob1.ComputeEmpwage();
+            Console.WriteLine("----------------------------------------------------------------------------------------");
+            EmpWageBuilder ob2 = new EmpWageBuilder("Infosys", 240, 27, 216);
+            ob2.ComputeEmpwage();
             Console.ReadLine();
         }
     }
